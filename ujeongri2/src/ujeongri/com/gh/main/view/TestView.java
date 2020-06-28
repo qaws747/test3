@@ -1,6 +1,8 @@
 package ujeongri.com.gh.main.view;
 
+import java.awt.Graphics;
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -8,73 +10,61 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
  
 
 public class TestView extends JFrame{
-	private int x;
-	private int y;
+	JButton move;
+	
+	public TestView() {
+		super("TEST");
+		this.init();
+		
+		this.run();
+		
+	}
+	
+	public void init() {
+		
+	}
+	
+	public void run() {
+		JFrame frame = new JFrame();
+		frame.setSize(1440, 900);
+		
+		ImageIcon icon = new ImageIcon("src/images/ppap/antppap.png");
+		Image img = icon.getImage();
+		Image img2 = img.getScaledInstance(44, 98, Image.SCALE_SMOOTH);
+		ImageIcon icon2 = new ImageIcon(img2);
+		
+		JPanel panel = new JPanel() {
+		
+		public void paintComponent(Graphics g) {
+		g.drawImage(icon2.getImage(), 300, 300, null);
+		}
+		};
+		
+		panel.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				int x = move.getX();
+				
+				if(e.getKeyCode() == KeyEvent.VK_UP) {
+					
+				}
+			}
+		});
+		
+		frame.add(panel);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		
+		
+	}
 	
 
- 
- public TestView(int x, int y) throws HeadlessException {
-		super();
-		this.x = x;
-		this.y = y;
-	}
-public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
-	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public void setY(int y) {
-		this.y = y;
-	}
-public TestView() {
-	 super("우 - 정 - 리");
-		this.setBounds(100, 100, 1440, 900);
-		this.setLayout(null);
-		this.setVisible(true);  
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  
-		ImageIcon pappIcon = new ImageIcon("src/images/antppap.png");
-		JButton pappButton = new JButton(pappIcon);
-		pappButton.setBounds(300, 300, 44, 98);
-		pappButton.setBorderPainted(false);
-		
-		pappButton.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent k){
-				   
-			    switch(k.getKeyCode()){
-			     case KeyEvent.VK_UP:
-			      k.setLocation(k.getX(), k.getY()-10);
-			      break;
-			   
-			     case KeyEvent.VK_DOWN:
-			      k.setLocation(k.getX(), k.getY()+10);
-			      break;
-			     case KeyEvent.VK_LEFT:
-			      k.setLocation(k.getX()-10, k.getY());
-			      break;
-			     case KeyEvent.VK_RIGHT:
-			      k.setLocation(k.getX()+10, k.getY());
-			      break;
-			   
-			    }
-		});
-
-  
-
- }
- public static void main(String[] args) {
-  new TestView();
-  
- 
-}
 
 
 
