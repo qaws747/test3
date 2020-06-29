@@ -36,7 +36,6 @@ public class ButtonMainView extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == btn1) {
 					LoginView lv = new LoginView();
-//					dispose();
 				}
 			}
 		});
@@ -69,6 +68,9 @@ public class ButtonMainView extends JFrame  {
 		
 	}
 
+	public void close() {
+		this.dispose();
+	}
 	
 //	class MyMouseAdapter extends MouseAdapter {
 //		@Override

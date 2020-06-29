@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import ujeongri.com.gh.game.view.ShopView;
 
 public class LoginView extends JFrame {
+	ButtonMainView bmv = new ButtonMainView();
 
 	public LoginView() {
 		this.setBounds(500, 500, 400, 100);
@@ -30,12 +31,14 @@ public class LoginView extends JFrame {
 		
 		JButton btn3 = new JButton("login");
 		btn3.addActionListener(new ActionListener() {
+
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == btn3) {
 					ShopView sv = new ShopView();
 					dispose();
+					bmv.close();
 				}
 				
 			}
