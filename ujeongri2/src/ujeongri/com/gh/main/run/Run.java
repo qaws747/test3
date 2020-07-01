@@ -12,14 +12,16 @@ public class Run {
 	public static void main(String[] args) {
 //		MainView mv = new MainView();
 //		ButtonMainView bmv = new ButtonMainView();
-//		ShopView sv = new ShopView();
+		ShopView sv = new ShopView();
 //		sv.shop();
 
-		ForestView fv = new ForestView();
+//		ForestView fv = new ForestView();
 		
 //		TestView tv = new TestView();
 
 //		PlayerController pc = new PlayerController();
+		
+//		ThreadRun tr = new ThreadRun();
 
 	}
 	
