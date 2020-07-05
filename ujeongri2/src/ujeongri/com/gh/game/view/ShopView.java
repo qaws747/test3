@@ -12,8 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import ujeongri.com.gh.game.view.ForestView.key;
-
 public class ShopView extends JFrame {
 
 	public ShopView() {
@@ -26,6 +24,7 @@ public class ShopView extends JFrame {
 	JLabel papLabel = new JLabel();
 	JLabel wLabel = new JLabel();
 	JLabel rgLabel = new JLabel();
+	
 	
 	public void shop() {
 //		this.setLayout(null);
