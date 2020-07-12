@@ -30,6 +30,7 @@ public class NpcView extends JFrame implements Runnable, KeyListener {
 
 	Image buffimg;// 더블버퍼링용 입니다.
 	Graphics gc;
+	Graphics bc;
 
 	Thread th;
 
@@ -38,8 +39,8 @@ public class NpcView extends JFrame implements Runnable, KeyListener {
 	int moveStatus; // 케릭터가 어디를 바라보는지 방향을 받을 변수
 
 	NpcView() {
-		init();
 		start();
+		init();
 
 		setSize(1440, 900);
 		Dimension screen = tk.getScreenSize();
@@ -66,6 +67,13 @@ public class NpcView extends JFrame implements Runnable, KeyListener {
 		y = 550;
 
 		moveStatus = 2;
+		
+		Image background = new ImageIcon("src/images/forest.png").getImage().getScaledInstance(1440, 900, 0);
+		bgLabel = new JLabel(new ImageIcon(background));
+		bgLabel.setBounds(0, 0, 1440, 900);
+		
+		panel.add(bgLabel);
+		this.add(panel);
 //케릭터가 시작할때 바라보는 방향은 아래쪽입니다.
 // 0 : 위쪽, 1 : 오른쪽, 2 : 아래쪽, 3 : 왼쪽
 
@@ -103,18 +111,15 @@ public class NpcView extends JFrame implements Runnable, KeyListener {
 	public void update(Graphics g) {
 //더블 버퍼링을 이용해 버퍼에 그려진것을 가져옵니다.
 		DrawImg();
-
 		g.drawImage(buffimg, 0, 0, this);
 	}
 	
-	public void back(Graphics g) {
-		g.drawImage(background, 0, 0, this);
-	}
 	
 	public void DrawImg() {
 		MoveImage(img, x, y, 53, 98);
 //케릭터를 걸어가게 만들기 위해 추가로 만든 메소드 입니다.
 	}
+	
 
 	public void MoveImage(Image img, int x, int y, int width, int height) {
 //케릭터 이미지, 케릭터 위치, 케릭터 크기를 받습니다.

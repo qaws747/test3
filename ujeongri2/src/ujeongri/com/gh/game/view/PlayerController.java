@@ -1,54 +1,71 @@
 package ujeongri.com.gh.game.view;
 
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Insets;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.CropImageFilter;
+import java.awt.image.FilteredImageSource;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import ujeongri.com.gh.main.view.TestView;
+import ujeongri.com.gh.game.view.PlayerController.key;
 
-public class PlayerController extends ForestView {
-	private JFrame frame;
-	ImageIcon picon2;
-	
+public class PlayerController extends JFrame {
+
+	Image image;
+	Insets insets;
+
 	public PlayerController() {
-		test();
+		super();
+		ImageIcon icon = new ImageIcon("src/images/wangnunramgi/ppap.png");
+		image = icon.getImage();
+
+		this.addKeyListener(new key());
+
+//	    image = createImage(new FilteredImageSource(image.getSource(),
+//	        new CropImageFilter(0, 0, 600, 1000)));
 	}
 
-	public PlayerController(JFrame frame, ImageIcon picon2, ImageIcon icon2, JPanel panel) {
-		super(icon2, panel);
-		this.frame = frame;
-		this.icon2 = icon2;
-	}
-	
-	
-	public void test() {
-		
-		frame.setSize(1440, 900);
-		
-		ImageIcon picon = new ImageIcon("src/images/ppap/antppap.png");
-		Image pimg = picon.getImage();
-		Image pimg2 = pimg.getScaledInstance(44, 98, Image.SCALE_SMOOTH);
-		ImageIcon picon2 = new ImageIcon(pimg2);
-		
-		
-		JLabel plabel = new JLabel() {
-			
-			public void paintComponent(Graphics g) {
-				g.drawImage(icon2.getImage(), 300, 300, null);
+
+	public class key implements KeyListener {
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			switch (e.getKeyCode()) {
+			case 37: BufferedImage img = ((BufferedImage) image).getSubimage(0, 500, 500, 1000); //fill in the corners of the desired crop location here
+			BufferedImage copyOfImage = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
+			Graphics g = copyOfImage.createGraphics();
+			g.drawImage(img, 0, 0, null);
+//			return copyOfImage;
+				break;
+
+			case 38:
+				break;
+
 			}
-		};
-		
-		JPanel panel2 = new JPanel();
-		
-		panel2.add(panel);
-		panel2.add(plabel);
-		frame.add(panel2);
-		frame.setVisible(true);
-		
+
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
 	}
+
+	public static void main(String args[]) {
+		JFrame f = new PlayerController();
+		f.setSize(500, 1000);
+		f.show();
+	}
+
 }
